@@ -51,9 +51,23 @@ namespace StepsLeaderboard.Controllers
             return CreatedAtAction(nameof(GetCounter), new { id = counterDto.Id }, counterDto);
         }
 
-        [HttpDelete("{id}")] public ActionResult DeleteCounter(int id) { var counter = _dataStore.GetCounter(id); if (counter == null) { return NotFound("Counter not found"); } _dataStore.DeleteCounter(id); return NoContent(); }
+        [HttpDelete("{id}")]
+        [SwaggerOperation(Summary = "Delets a counter")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "Counter not found for deletion")]
+        public ActionResult DeleteCounter(int id)
+        {
+            var counter = _dataStore.GetCounter(id);
+            if (counter == null)
+            {
+                return NotFound("Counter not found");
+            }
+            _dataStore.DeleteCounter(id);
+            return NoContent();
+        }
 
         [HttpGet("{id}")]
+        [SwaggerOperation(Summary = "Gets a counter")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "Counter not found")]
         public ActionResult<CounterDto> GetCounter(int id)
         {
             var counter = _dataStore.GetCounter(id);
@@ -75,6 +89,8 @@ namespace StepsLeaderboard.Controllers
         }
 
         [HttpPatch("{id}/increment")]
+        [SwaggerOperation(Summary = "Increments a counter")]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "Counter not found")]
         public ActionResult<CounterDto> IncrementCounter(int id, [FromBody] int steps)
         {
             var counter = _dataStore.GetCounter(id);
