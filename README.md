@@ -1,4 +1,5 @@
 # StepsLeaderboard
+
 StepsLeaderboard API
 Overview
 The StepsLeaderboard API allows users to manage teams and counters, track steps taken by team members, and view various statistics. This API is built using ASP.NET Core and provides endpoints for creating, deleting, and managing teams and counters. It also allows users to view the total steps taken by teams and compare team statistics.
@@ -21,3 +22,8 @@ Prerequisites
 .NET 6.0 SDK
 
 Visual Studio or any other C# IDE
+
+Getting Started
+Clone the Repository:
+
+git clone https://github.com/your-username/steps-leaderboard-api.git
